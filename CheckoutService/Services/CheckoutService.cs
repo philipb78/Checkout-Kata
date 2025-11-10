@@ -1,4 +1,5 @@
 ﻿using Checkout.Interfaces;
+using Checkout.Models;
 using Checkout.SpecialPricesRules;
 
 namespace Checkout.Services
@@ -9,9 +10,14 @@ namespace Checkout.Services
     public class CheckoutService : ICheckoutService
     {
         /// <summary>
+        /// Product Repository
+        /// </summary>
+        private readonly IProductRepository _productRepository;
+
+        /// <summary>
         /// List Of Special Price Rules
         /// </summary>
-        private List<SpecialPriceRuleBase> _specialPriceRules;
+        private readonly List<SpecialPriceRuleBase> _specialPriceRules;
 
         /// <summary>
         /// Total Price
@@ -22,9 +28,10 @@ namespace Checkout.Services
         /// Check Out Service Constructor
         /// </summary>
         /// <param name="specialPriceRules">List Special Rules</param>
-        public CheckoutService(List<SpecialPriceRuleBase> specialPriceRules)
+        public CheckoutService(List<SpecialPriceRuleBase> specialPriceRules, IProductRepository productRepository)
         {
             _specialPriceRules = specialPriceRules;
+            _productRepository = productRepository;
         }
 
         /// <summary>
