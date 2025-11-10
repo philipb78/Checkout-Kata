@@ -30,7 +30,7 @@ namespace Checkout.Interfaces
         /// </summary>
         /// <param name="sku">SKU</param>
         /// <returns>Product </returns>
-        Product GetProduct(string sku);
+        Product? GetProduct(string sku);
 
         /// <summary>
         /// Update Product
