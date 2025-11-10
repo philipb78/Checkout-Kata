@@ -24,6 +24,12 @@ namespace Checkout.Services
         /// </summary>
         private double _totalPrice;
 
+
+        /// <summary>
+        /// Scanned Items
+        /// </summary>
+        private List<Product> _scannedItems;
+
         /// <summary>
         /// Check Out Service Constructor
         /// </summary>
@@ -32,6 +38,7 @@ namespace Checkout.Services
         {
             _specialPriceRules = specialPriceRules;
             _productRepository = productRepository;
+            _scannedItems = new List<Product>();
         }
 
         /// <summary>
@@ -49,7 +56,15 @@ namespace Checkout.Services
         /// <param name="sku"></param>
         public void ScanItem(string sku)
         {
-            throw new NotImplementedException();
+            Product? product = _productRepository.GetProduct(sku);
+            if (product == null)
+            {
+
+                throw new Exception("SKU Not Found");
+            } else
+            {
+                _scannedItems.Add(product);
+            }
         }
     }
 }
