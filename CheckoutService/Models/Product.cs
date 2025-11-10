@@ -17,5 +17,16 @@ namespace Checkout.Models
         /// </summary>
         [Required]
         public string SKU { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Product Constructor
+        /// </summary>
+        /// <param name="sku">sku</param>
+        /// <param name="price">price</param>
+        public Product(string sku, double price)
+        {
+            Price = price;
+            SKU = sku;
+        }
     }
 }
