@@ -20,10 +20,9 @@ namespace Checkout.Services
         private readonly List<SpecialPriceRuleBase> _specialPriceRules;
 
         /// <summary>
-        /// Total Price
+        /// Special Price Total
         /// </summary>
-        private double _totalPrice;
-
+        private Double _specialPriceTotal = 0;
 
         /// <summary>
         /// Scanned Items
@@ -39,21 +38,29 @@ namespace Checkout.Services
             _specialPriceRules = specialPriceRules;
             _productRepository = productRepository;
             _scannedItems = new List<Product>();
+         
         }
 
         /// <summary>
-        /// Get Total price
+        /// Get Total Price including Special Price Deals
         /// </summary>
         /// <returns>Total Price</returns>
         public double GetTotalPrice()
         {
-            throw new NotImplementedException();
+            double totalPrice = 0;
+            totalPrice+=_specialPriceTotal;
+            foreach (Product product in _scannedItems)
+            {
+                totalPrice += product.Price;
+            }
+            return totalPrice;
+
         }
 
         /// <summary>
-        ///
+        /// Scan Item
         /// </summary>
-        /// <param name="sku"></param>
+        /// <param name="sku">sku</param>
         public void ScanItem(string sku)
         {
             Product? product = _productRepository.GetProduct(sku);
@@ -64,6 +71,20 @@ namespace Checkout.Services
             } else
             {
                 _scannedItems.Add(product);
+                CalculateSpecialPriceTotal();
+
+            }
+        }
+
+        /// <summary>
+        /// Calculate Special Price Total 
+        /// Items will be removed from the main list that are included in this total
+        /// </summary>
+        private void CalculateSpecialPriceTotal()
+        {
+            foreach (SpecialPriceRuleBase specialPriceRule in _specialPriceRules)
+            {
+               _specialPriceTotal+= specialPriceRule.ApplySpecialPrice(ref _scannedItems);
             }
         }
     }
