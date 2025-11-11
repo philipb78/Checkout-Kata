@@ -1,4 +1,5 @@
-﻿using Checkout.Interfaces;
+﻿using Checkout.Constants;
+using Checkout.Interfaces;
 using Checkout.Models;
 using Checkout.SpecialPricesRules;
 
@@ -67,7 +68,7 @@ namespace Checkout.Services
             if (product == null)
             {
 
-                throw new Exception("SKU Not Found");
+                throw new ArgumentException(MessageConstants.InvalidSKU);
             } else
             {
                 _scannedItems.Add(product);

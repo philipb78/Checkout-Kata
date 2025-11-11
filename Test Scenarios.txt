@@ -1,0 +1,93 @@
+Test Scenarios
+
+Test Invalid SKU
+SCAN Z
+Expected result= exception
+
+Test No Prices
+Expected result=0
+
+Test Individual price
+SCAN A
+Expected Result=50
+
+
+
+Test Individual Prices
+
+SCAN A 
+SCAN B
+SCAN C
+SCAN D
+
+Expected Result=115
+
+Test Special Price A
+SCAN A
+SCAN A
+SCAN A
+Expected Result= 130
+
+Test Special Price B
+TEST B
+TEST B
+
+Expected Result =45
+
+Test Special price A + Special Price B In Order
+SCAN A
+SCAN A
+SCAN A
+
+SCAN B
+SCAN B
+Expected result=175
+
+Test Special Price A+ B Mixed Order
+SCAN A
+SCAN B
+SCAN A
+SCAN B
+SCAN A
+
+Expected Result = 175
+
+Test Special Price + Special price Not in deal
+
+SCAN A
+SCAN A
+SCAN A
+SCAN A
+Expected Result = 160
+
+Test Incomplete Special Price
+SCAN A
+SCAN A
+
+Expected = 100
+
+
+Test Mix Special Non Special
+SCAN A
+SCAN B 
+SCAN C
+SCAN D
+SCAN C
+SCAN B
+
+Expected Result = 150
+
+Test Multiple Batches Of Special Price
+SCAN A
+SCAN A
+SCAN A
+SCAN A
+SCAN A
+SCAN A
+Expected Result =260
+
+Test Multiple Get Price
+SCAN A
+Getprice ()
+SCAN B
+Expected Result = 80

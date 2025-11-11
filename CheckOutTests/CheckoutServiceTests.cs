@@ -1,5 +1,7 @@
-﻿using Checkout.Services;
+﻿using Checkout.Interfaces;
+using Checkout.Services;
 using Checkout.SpecialPricesRules;
+using CheckOutServiceTests;
 using CheckOutTests;
 
 namespace CheckOutServiceTests
@@ -13,16 +15,9 @@ namespace CheckOutServiceTests
             MockProductRepository mockProductRepository = new MockProductRepository();
             List<SpecialPriceRuleBase> rules = new List<SpecialPriceRuleBase>();
             _checkoutService = new CheckoutService(rules, mockProductRepository);
+            
         }
     }
 
-    public class ScanItemTests : CheckoutServiceTests
-    {
-        [Fact]
-        public void ScanItem()
-        {
-            _checkoutService.ScanItem("A");
-        }
-    }
 
 }
