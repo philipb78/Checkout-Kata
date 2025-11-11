@@ -1,1 +1,3 @@
-## Philip Black KATA Checkout Technical Code Challenge 
+## Philip Black
+## Bright 
+## KATA Checkout Technical Code Challenge 
