@@ -56,11 +56,7 @@ namespace Checkout.Services
             return totalPrice;
         }
 
-        public void Reset()
-        {
-            _scannedItems.Clear();
-            _specialPriceTotal = 0;
-        }
+   
 
         /// <summary>
         /// Scan Item

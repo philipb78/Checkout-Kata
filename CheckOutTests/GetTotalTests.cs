@@ -9,7 +9,7 @@ namespace CheckOutTests
         public void Should_ReturnSingleItemPrice_When_SingleItemScanned()
         {
             CheckoutService checkoutService = GetCheckoutService();
-            checkoutService.Reset();
+
             checkoutService.ScanItem("A");
             double total = checkoutService.GetTotalPrice();
             Assert.Equal(50, total);
@@ -19,7 +19,7 @@ namespace CheckOutTests
         public void Should_ReturnSpecialPriceA_When_ThreeAsScanned()
         {
             CheckoutService checkoutService = GetCheckoutService();
-            checkoutService.Reset();
+       
             checkoutService.ScanItem("A");
             checkoutService.ScanItem("A");
             checkoutService.ScanItem("A");
@@ -31,7 +31,7 @@ namespace CheckOutTests
         public void Should_ReturnTotalOfIndiviudalPrices_When_AllSingleItemsScanned()
         {
             CheckoutService checkoutService = GetCheckoutService();
-            checkoutService.Reset();
+       
             checkoutService.ScanItem("A");
             checkoutService.ScanItem("B");
             checkoutService.ScanItem("C");
@@ -46,9 +46,47 @@ namespace CheckOutTests
         public void Should_ReturnZero_When_NoItemsScanned()
         {
             CheckoutService checkoutService = GetCheckoutService();
-            checkoutService.Reset();
+   
             double total = checkoutService.GetTotalPrice();
             Assert.Equal(0, total);
         }
+
+        [Fact]
+        public void ShouldReturnSpecialPriceB_When_TwoBsScanned()
+        {
+            CheckoutService checkoutService= GetCheckoutService();
+            checkoutService.ScanItem("B");
+            checkoutService.ScanItem("B");
+            double total = checkoutService.GetTotalPrice();
+            Assert.Equal(45, total);
+
+        }
+
+        [Fact]
+        public void Should_ApplySpecialPrices_When_DealsScannedInSequence()
+        {
+            CheckoutService checkoutService= GetCheckoutService();
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("B");
+            checkoutService.ScanItem("B");
+            double total = checkoutService.GetTotalPrice();
+            Assert.Equal(175, total);
+        }
+
+        [Fact]
+        public void Should_ApplySpecialPrices_WhenDealScannedInMixedOrder()
+        {
+            CheckoutService checkout = GetCheckoutService();
+            checkout.ScanItem("A");
+            checkout.ScanItem("B");
+            checkout.ScanItem("A");
+            checkout.ScanItem("B");
+            checkout.ScanItem("A");
+            double total = checkout.GetTotalPrice();
+            Assert.Equal(175, total);
+        }
+
     }
 }
