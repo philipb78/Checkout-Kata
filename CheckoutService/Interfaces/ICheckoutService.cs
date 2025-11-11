@@ -16,5 +16,10 @@
         /// </summary>
         /// <param name="sku">SKU</param>
         void ScanItem(string sku);
+
+        /// <summary>
+        /// Reset Checkout
+        /// </summary>
+        void Reset();
     }
 }

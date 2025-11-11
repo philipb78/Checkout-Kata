@@ -21,14 +21,14 @@ namespace Checkout.Services
         private readonly List<SpecialPriceRuleBase> _specialPriceRules;
 
         /// <summary>
-        /// Special Price Total
-        /// </summary>
-        private Double _specialPriceTotal = 0;
-
-        /// <summary>
         /// Scanned Items
         /// </summary>
         private List<Product> _scannedItems;
+
+        /// <summary>
+        /// Special Price Total
+        /// </summary>
+        private Double _specialPriceTotal = 0;
 
         /// <summary>
         /// Check Out Service Constructor
@@ -39,7 +39,6 @@ namespace Checkout.Services
             _specialPriceRules = specialPriceRules;
             _productRepository = productRepository;
             _scannedItems = new List<Product>();
-         
         }
 
         /// <summary>
@@ -49,13 +48,18 @@ namespace Checkout.Services
         public double GetTotalPrice()
         {
             double totalPrice = 0;
-            totalPrice+=_specialPriceTotal;
+            totalPrice += _specialPriceTotal;
             foreach (Product product in _scannedItems)
             {
                 totalPrice += product.Price;
             }
             return totalPrice;
+        }
 
+        public void Reset()
+        {
+            _scannedItems.Clear();
+            _specialPriceTotal = 0;
         }
 
         /// <summary>
@@ -67,25 +71,27 @@ namespace Checkout.Services
             Product? product = _productRepository.GetProduct(sku);
             if (product == null)
             {
-
                 throw new ArgumentException(MessageConstants.InvalidSKU);
-            } else
+            }
+            else
             {
                 _scannedItems.Add(product);
                 CalculateSpecialPriceTotal();
-
             }
         }
 
         /// <summary>
-        /// Calculate Special Price Total 
+        /// Reset Checkout
+        /// </summary>
+        /// <summary>
+        /// Calculate Special Price Total
         /// Items will be removed from the main list that are included in this total
         /// </summary>
         private void CalculateSpecialPriceTotal()
         {
             foreach (SpecialPriceRuleBase specialPriceRule in _specialPriceRules)
             {
-               _specialPriceTotal+= specialPriceRule.ApplySpecialPrice(ref _scannedItems);
+                _specialPriceTotal += specialPriceRule.ApplySpecialPrice(ref _scannedItems);
             }
         }
     }
