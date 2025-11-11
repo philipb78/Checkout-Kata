@@ -1,4 +1,5 @@
 ﻿using Checkout.Constants;
+using Checkout.Services;
 using CheckOutServiceTests;
 
 namespace CheckOutTests
@@ -8,7 +9,8 @@ namespace CheckOutTests
         [Fact]
         public void Should_ThrowExceptionWhenSKUIsInvalid()
         {
-            Action act = () => _checkoutService.ScanItem("Z");
+            CheckoutService checkoutService = GetCheckoutService();
+            Action act = () => checkoutService.ScanItem("Z");
             ArgumentException exception = Assert.Throws<ArgumentException>(act);
             Assert.Equal(MessageConstants.InvalidSKU, exception.Message);
         }

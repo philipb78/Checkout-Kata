@@ -1,4 +1,5 @@
-﻿using CheckOutServiceTests;
+﻿using Checkout.Services;
+using CheckOutServiceTests;
 
 namespace CheckOutTests
 {
@@ -7,33 +8,36 @@ namespace CheckOutTests
         [Fact]
         public void Should_ReturnSingleItemPrice_When_SingleItemScanned()
         {
-            _checkoutService.Reset();
-            _checkoutService.ScanItem("A");
-            double total = _checkoutService.GetTotalPrice();
+            CheckoutService checkoutService = GetCheckoutService();
+            checkoutService.Reset();
+            checkoutService.ScanItem("A");
+            double total = checkoutService.GetTotalPrice();
             Assert.Equal(50, total);
         }
 
         [Fact]
         public void Should_ReturnSpecialPriceA_When_ThreeAsScanned()
         {
-            _checkoutService.Reset();
-            _checkoutService.ScanItem("A");
-            _checkoutService.ScanItem("A");
-            _checkoutService.ScanItem("A");
-            double total = _checkoutService.GetTotalPrice();
+            CheckoutService checkoutService = GetCheckoutService();
+            checkoutService.Reset();
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("A");
+            double total = checkoutService.GetTotalPrice();
             Assert.Equal(130, total);
         }
 
         [Fact]
         public void Should_ReturnTotalOfIndiviudalPrices_When_AllSingleItemsScanned()
         {
-            _checkoutService.Reset();
-            _checkoutService.ScanItem("A");
-            _checkoutService.ScanItem("B");
-            _checkoutService.ScanItem("C");
-            _checkoutService.ScanItem("D");
+            CheckoutService checkoutService = GetCheckoutService();
+            checkoutService.Reset();
+            checkoutService.ScanItem("A");
+            checkoutService.ScanItem("B");
+            checkoutService.ScanItem("C");
+            checkoutService.ScanItem("D");
 
-            double total = _checkoutService.GetTotalPrice();
+            double total = checkoutService.GetTotalPrice();
 
             Assert.Equal(115, total);
         }
@@ -41,8 +45,9 @@ namespace CheckOutTests
         [Fact]
         public void Should_ReturnZero_When_NoItemsScanned()
         {
-            _checkoutService.Reset();
-            double total = _checkoutService.GetTotalPrice();
+            CheckoutService checkoutService = GetCheckoutService();
+            checkoutService.Reset();
+            double total = checkoutService.GetTotalPrice();
             Assert.Equal(0, total);
         }
     }
