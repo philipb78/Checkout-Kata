@@ -77,9 +77,6 @@ namespace Checkout.Services
         }
 
         /// <summary>
-        /// Reset Checkout
-        /// </summary>
-        /// <summary>
         /// Calculate Special Price Total
         /// Items will be removed from the main list that are included in this total
         /// </summary>

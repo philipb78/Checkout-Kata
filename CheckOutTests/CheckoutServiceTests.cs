@@ -6,11 +6,8 @@ namespace CheckOutServiceTests
 {
     public class CheckoutServiceTests
     {
-    
-
         public CheckoutServiceTests()
         {
-  
         }
 
         protected CheckoutService GetCheckoutService()

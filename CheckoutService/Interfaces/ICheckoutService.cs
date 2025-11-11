@@ -16,7 +16,5 @@
         /// </summary>
         /// <param name="sku">SKU</param>
         void ScanItem(string sku);
-
-     
     }
 }

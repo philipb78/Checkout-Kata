@@ -34,7 +34,7 @@ namespace CheckOutTests
         /// <param name="product">product</param>
         public void AddProduct(Product product)
         {
-            // Do nothing
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace CheckOutTests
         /// <param name="sku">sku</param>
         public void DeleteProduct(string sku)
         {
-            //Do Nothing
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -65,9 +65,13 @@ namespace CheckOutTests
             return _products.Where(p => p.SKU == sku).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Update Product
+        /// </summary>
+        /// <param name="product"></param>
         public void UpdateProduct(Product product)
         {
-            //Do Nothing
+           throw new NotImplementedException();
         }
     }
 }
