@@ -1,12 +1,14 @@
-﻿using Checkout.Services;
+﻿using Checkout.Constants;
+using Checkout.Services;
 using Checkout.SpecialPricesRules;
 using CheckOutTests;
+using System;
 
 namespace CheckOutServiceTests
 {
-    public class CheckoutServiceTests
+    public class CheckoutServiceBase
     {
-        public CheckoutServiceTests()
+        public CheckoutServiceBase()
         {
         }
 
@@ -21,5 +23,7 @@ namespace CheckOutServiceTests
             CheckoutService checkoutService = new CheckoutService(rules, mockProductRepository);
             return checkoutService;
         }
+
+
     }
 }

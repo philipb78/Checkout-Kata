@@ -4,7 +4,7 @@ using CheckOutServiceTests;
 
 namespace CheckOutTests
 {
-    public class GetTotalTests : CheckoutServiceTests
+    public class GetTotalTests : CheckoutServiceBase
     {
         [Fact]
         public void Should_ApplySpecialPriceAndNormal_When_SpecialPriceAmountOfItemsPlusExtraItemNotInADeal()
