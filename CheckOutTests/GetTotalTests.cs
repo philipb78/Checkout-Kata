@@ -7,7 +7,7 @@ namespace CheckOutTests
     public class GetTotalTests : CheckoutServiceTests
     {
         [Fact]
-        public void Should_ApplySpecialPriceAndNormal_WhenSpecialPriceAmountOfItemsPlusExtraItemNotInADeal()
+        public void Should_ApplySpecialPriceAndNormal_When_SpecialPriceAmountOfItemsPlusExtraItemNotInADeal()
         {
             CheckoutService checkout = GetCheckoutService();
             checkout.ScanItem("A");
