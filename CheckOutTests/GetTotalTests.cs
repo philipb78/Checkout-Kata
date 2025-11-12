@@ -32,7 +32,7 @@ namespace CheckOutTests
         }
 
         [Fact]
-        public void Should_ApplySpecialPrices_WhenDealScannedInMixedOrder()
+        public void Should_ApplySpecialPrices_When_DealScannedInMixedOrder()
         {
             CheckoutService checkout = GetCheckoutService();
             checkout.ScanItem("A");
