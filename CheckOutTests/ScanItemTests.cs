@@ -7,7 +7,7 @@ namespace CheckOutTests
     public class ScanItemTests : CheckoutServiceTests
     {
         [Fact]
-        public void Should_ThrowExceptionWhenSKUIsInvalid()
+        public void Should_ThrowException_When_SKUIsInvalid()
         {
             CheckoutService checkoutService = GetCheckoutService();
             Action act = () => checkoutService.ScanItem("Z");
