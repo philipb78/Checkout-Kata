@@ -36,6 +36,9 @@ namespace Checkout.Services
         /// <param name="specialPriceRules">List Special Rules</param>
         public CheckoutService(List<SpecialPriceRuleBase> specialPriceRules, IProductRepository productRepository)
         {
+            if (specialPriceRules == null) throw new NullReferenceException(nameof(specialPriceRules)+" Is Null");
+            if (productRepository == null) throw new NullReferenceException(nameof(productRepository)+" Is Null");
+
             _specialPriceRules = specialPriceRules;
             _productRepository = productRepository;
             _scannedItems = new List<Product>();
@@ -55,8 +58,6 @@ namespace Checkout.Services
             }
             return totalPrice;
         }
-
-   
 
         /// <summary>
         /// Scan Item

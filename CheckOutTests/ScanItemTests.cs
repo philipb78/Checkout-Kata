@@ -4,7 +4,7 @@ using CheckOutServiceTests;
 
 namespace CheckOutTests
 {
-    public class ScanItemTests : CheckoutServiceTests
+    public class ScanItemTests : CheckoutServiceBase
     {
         [Fact]
         public void Should_ThrowException_When_SKUIsInvalid()
