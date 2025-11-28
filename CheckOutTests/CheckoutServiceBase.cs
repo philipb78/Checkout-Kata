@@ -1,8 +1,6 @@
-﻿using Checkout.Constants;
-using Checkout.Services;
+﻿using Checkout.Services;
 using Checkout.SpecialPricesRules;
 using CheckOutTests;
-using System;
 
 namespace CheckOutServiceTests
 {
@@ -23,10 +21,8 @@ namespace CheckOutServiceTests
             BagPricingService bagPricingService = new BagPricingService(0, 0);
 
             CheckoutService checkoutService = new CheckoutService(rules, mockProductRepository, bagPricingService);
-             
+
             return checkoutService;
         }
-
-
     }
 }
