@@ -11,6 +11,11 @@ namespace Checkout.Services
     public class CheckoutService : ICheckoutService
     {
         /// <summary>
+        /// BAG Pricing Service
+        /// </summary>
+        private readonly IBagPricingService _bagPricingService;
+
+        /// <summary>
         /// Product Repository
         /// </summary>
         private readonly IProductRepository _productRepository;
@@ -28,19 +33,34 @@ namespace Checkout.Services
         /// <summary>
         /// Special Price Total
         /// </summary>
-        private Double _specialPriceTotal = 0;
+        private double _specialPriceTotal = 0;
+
+        /// <summary>
+        /// Total Items Scanned
+        /// </summary>
+        private int _totalItems = 0;
 
         /// <summary>
         /// Check Out Service Constructor
         /// </summary>
         /// <param name="specialPriceRules">List Special Rules</param>
-        public CheckoutService(List<SpecialPriceRuleBase> specialPriceRules, IProductRepository productRepository)
+        public CheckoutService(List<SpecialPriceRuleBase> specialPriceRules, IProductRepository productRepository, IBagPricingService bagPricingService)
         {
-            if (specialPriceRules == null) throw new NullReferenceException(nameof(specialPriceRules)+" Is Null");
-            if (productRepository == null) throw new NullReferenceException(nameof(productRepository)+" Is Null");
-
+            if (specialPriceRules == null)
+            {
+                throw new NullReferenceException(nameof(specialPriceRules) + " Is Null");
+            }
+            if (productRepository == null)
+            {
+                throw new NullReferenceException(nameof(productRepository) + " Is Null");
+            }
+            if (bagPricingService == null)
+            {
+                throw new NullReferenceException(nameof(bagPricingService) + " Is Null");
+            }
             _specialPriceRules = specialPriceRules;
             _productRepository = productRepository;
+            _bagPricingService = bagPricingService;
             _scannedItems = new List<Product>();
         }
 
@@ -56,6 +76,9 @@ namespace Checkout.Services
             {
                 totalPrice += product.Price;
             }
+
+            double bagPrice = _bagPricingService.GetBagPrice(_totalItems);
+            totalPrice += bagPrice;
             return totalPrice;
         }
 
@@ -75,6 +98,7 @@ namespace Checkout.Services
                 _scannedItems.Add(product);
                 CalculateSpecialPriceTotal();
             }
+            _totalItems++;
         }
 
         /// <summary>

@@ -20,7 +20,10 @@ namespace CheckOutServiceTests
                 new SpecialPriceRuleMultiBuy("B", 45, 2)
             };
 
-            CheckoutService checkoutService = new CheckoutService(rules, mockProductRepository);
+            BagPricingService bagPricingService = new BagPricingService(0, 0);
+
+            CheckoutService checkoutService = new CheckoutService(rules, mockProductRepository, bagPricingService);
+             
             return checkoutService;
         }
 
